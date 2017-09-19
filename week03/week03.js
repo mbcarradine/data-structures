@@ -30,8 +30,8 @@ $('table').eq(2).find('tbody tr').each(function(i, elem) { //addresses reside in
          .replace (/ /,"+")
          .replace (/ /,"+")
          .replace (/,/g,"")
-         .replace (/ /,"")
-         .trim(); //trim space
+         .replace (/ /,"");
+
          
         addresses.push(addr)}); //pushing into array
         console.log(addresses); //
