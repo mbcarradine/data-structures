@@ -6,11 +6,10 @@ var collName = 'aadata';
 // Connection URL
 var url = 'mongodb://' + process.env.IP + ':27017/' + dbName;
 
-//looking for Tuesday meetings
 var myQuery = [
-   { $match :{Day: "Tuesdays" }},
-//{ $match : {"Starts": { $gte : 700 } } }
-       ];
+  { $match :{"Starts": { $gt : "699"} }},
+   { $match :{"Day": "Tuesdays" }},
+    ];
 
 // Retrieve
 var MongoClient = require('mongodb').MongoClient;
@@ -25,7 +24,7 @@ MongoClient.connect(url, function(err, db) {
         
         else {
             console.log("Writing", docs.length, "documents as a result of this aggregation.");
-            fs.writeFileSync('mongo_aggregation_result.JSON', JSON.stringify(docs, null, 4));
+            fs.writeFileSync('week0506/mongo_aggregation_result.JSON', JSON.stringify(docs, null, 4));
         }
         db.close();
         

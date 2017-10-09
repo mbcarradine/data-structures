@@ -4,8 +4,10 @@ var content = fs.readFileSync('data/m09.txt');
 var $ = cheerio.load(content);
 var request = require('request');
 var meetingHold = [];
-var dbName = 'aaz9'; // name of Mongo database (created in the Mongo shell)
-var collName = 'aadata'; // name of Mongo collection (created in the Mongo shell)
+var dbName = 'aaz9'; // name of Mongo database 
+var collName = 'aadata'; // name of Mongo collection 
+
+//**SCRAPING ZONE**
 
 $('div table tbody tr').each(function(i, elem) {
  
@@ -57,7 +59,7 @@ var zip= $(elem).find('td').eq(0).text()
 
 var accessibility = $(elem).text().includes('Wheelchair access');                  
 
-//loading a var with combined days, times and meet types. will iterate through in a loop below
+//loading a var with days, times and meet types. will iterate through in a loop below
 var DaysTimes = $(elem).find('td').eq(1).text()
                        .replace('\r\n                    \t\t\r\n\t\t\t\t\t', '')
                        .replace(/[\r\n\t\/]/g, '')
@@ -83,11 +85,12 @@ var meeting = { "GroupName": groupName,
 };
  meetingHold.push(meeting);
 }
+fs.writeFileSync('week0506/aaDB.json', JSON.stringify(meetingHold)); 
+
+//**Console.log ZONE**
+
 //console.log(meeting);
 //console.log(meetingHold);
-
-fs.writeFileSync('week05/aaDB.json', JSON.stringify(meetingHold)); 
-
 //console.log(meeting);
  // console.log(DaysTimes);     
 //  console.log(addressDesc);
@@ -98,7 +101,10 @@ fs.writeFileSync('week05/aaDB.json', JSON.stringify(meetingHold));
 //console.log(meetTypeCode);
 //  console.log(meetDays);
 
-var meetingData = ( fs.readFileSync('week05/aaDB.json'));
+
+//***BEGIN SECTION WHERE I LOAD DATA INTO A MONGO DB***
+
+var meetingData = ( fs.readFileSync('week0506/aaDB.json'));
 
 // parsing the data and loading it into a variable
 request(meetingData, function(error, response, body) {
@@ -112,7 +118,7 @@ request(meetingData, function(error, response, body) {
     MongoClient.connect(url, function(err, db) {
         if (err) {return console.dir(err);}
 
-        var collection = db.collection(collName);
+    var collection = db.collection(collName);
 
         // Inserting parsed data
         collection.insert(dataParsed);

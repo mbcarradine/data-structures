@@ -1,0 +1,28 @@
+[
+    {
+        "_id": "59db03e4b5cd3c1948aad32d",
+        "GroupName": "GRUPO NUEVA VIDA",
+        "GroupDetails": "Spanish speaking meetings.",
+        "Address": "2126 2nd Avenue,New York, NY,",
+        "AddressDescription": "Betw. 109th & 110th Streets",
+        "Zip": "10029",
+        "Day": "Tuesdays",
+        "Starts": "800",
+        "Ends": "900",
+        "MeetingTypeCode": "OD",
+        "WheelchairAccess": true
+    },
+    {
+        "_id": "59db03e4b5cd3c1948aad324",
+        "GroupName": "GRUPO NUEVA VIDA",
+        "GroupDetails": "Spanish speaking meetings.",
+        "Address": "2126 2nd Avenue,New York, NY,",
+        "AddressDescription": "Betw. 109th & 110th Streets",
+        "Zip": "10029",
+        "Day": "Tuesdays",
+        "Starts": "800",
+        "Ends": "900",
+        "MeetingTypeCode": "OD",
+        "WheelchairAccess": true
+    }
+]
