@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+<html>
+<body>
+    <span id="Uptime"></span><br>
+    <span id="tstamp"></span>
+
+    <br><br>
+    <button onclick="start()">Connect</button>
+    <br>
+    
+        <li><a href="https://api.spark.io/v1/devices/260038000651353530373132/events/?access_token=a525c2297e901f27e9e6b8737f77cbc26f56371e">or this one</a></li>
+
+
+
+
+    <script type="text/javascript">
+    function start() {
+
+        document.getElementById("Uptime").innerHTML = "Waiting for data...";
+        var deviceID = "260038000651353530373132";
+        var accessToken = "a525c2297e901f27e9e6b8737f77cbc26f56371e";
+
+
+      var eventSource = new EventSource("https://api.spark.io/v1/devices/" + deviceID + "/events/?access_token=" + accessToken);
+      
+
+        eventSource.addEventListener('open', function(e) {
+            console.log("Opened!"); },false);
+
+        eventSource.addEventListener('error', function(e) {
+            console.log("Errored!"); },false);
+
+        eventSource.addEventListener('Uptime', function(e) {
+            var rawData = JSON.parse(e.data);
+
+            var parsedData = JSON.parse(rawData.data);
+            var tempSpan = document.getElementById("Uptime");
+            var tsSpan   = document.getElementById("tstamp");
+            
+            tempSpan.innerHTML = " JSON Data: " + parsedData.tiltvalue + ", " + parsedData.TempCvalue;
+           
+            // tempSpan.innerHTML = "Core: " + rawData.coreid + " JSON Data: " + parsedData.Hours + ", " + parsedData.Minutes + ", " + parsedData.Seconds +
+            //          " (" + (parsedData.Seconds + parsedData.Minutes*60 + parsedData.Hours*3600) + " secs)";
+          //  tempSpan.style.fontSize = "28px";
+          //  tsSpan.innerHTML = "At timestamp " + rawData.published_at;
+            tsSpan.style.fontSize = "9px";
+        }, false);
+    }
+    </script>
+</body>
+</html>
