@@ -19,7 +19,7 @@ var db_credentials = new Object();
 db_credentials.user = 'mbcarradine';
 db_credentials.host = process.env.AWSRDS_EP;
 db_credentials.database = 'fernsaysdb';
-db_credentials.password = process.env.AWSRDS_PWD;
+db_credentials.password = process.env.AWSRDS_PW;
 db_credentials.port = 5432;
 
 var getAndWriteData = function() {
