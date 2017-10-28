@@ -17,9 +17,10 @@ var device_url= 'https://api.particle.io/v1/devices/260038000651353530373132/jso
 
 var db_credentials = new Object();
 db_credentials.user = 'mbcarradine';
-db_credentials.host = process.env.AWSRDS_EP;
+//db_credentials.host = process.env.AWSRDS_EP;
+db_credentials.host = 'datastructures.cwa4xwjfcya6.us-east-1.rds.amazonaws.com';
 db_credentials.database = 'fernsaysdb';
-db_credentials.password = process.env.AWSRDS_PW;
+db_credentials.password = process.env.AWSRDS_P;
 db_credentials.port = 5432;
 
 var getAndWriteData = function() {
