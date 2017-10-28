@@ -2,13 +2,11 @@ var request = require('request');
 const { Client } = require('pg');
 
 // PARTICLE PHOTON
-var device_id = '260038000651353530373132';
-var access_token = 'a525c2297e901f27e9e6b8737f77cbc26f56371e';
-//var device_id = process.env.PHOTON_ID;
-//var access_token = process.env.PHOTON_TOKEN;
+
+var device_id = process.env.PHOTON_ID;
+var access_token = process.env.PHOTON_TOKEN;
 var particle_variable = 'json';
-//var device_url = 'https://api.particle.io/v1/devices/' + device_id + '/' + particle_variable + '?access_token=' + access_token;
-var device_url= 'https://api.particle.io/v1/devices/260038000651353530373132/json?access_token=a525c2297e901f27e9e6b8737f77cbc26f56371e';
+var device_url = 'https://api.particle.io/v1/devices/' + device_id + '/' + particle_variable + '?access_token=' + access_token;
 //console.log(device_url);
 // AWS RDS POSTGRESQL INSTANCE
 
